@@ -25,13 +25,12 @@ namespace Checkpoints
     static MapCheckpoints mapCheckpoints =
         boost::assign::map_list_of
         ( 0,      hashGenesisBlock )
-        ( 10600,uint256("0x931b6bfc4cd8e7ff3dc816d2d0a539ce0486bcc495a720ffcaa5129c2ad1aa6a"))
-        ( 12556,uint256("0x11d84566aab45774b2d3a379ee1f381bee37cf80125d4c9481538f9fa1ac3706"))
-        ( 16996,uint256("0x408084c7299169168ab371ff0e049c6bba09d03636c1618b924444260cc32edd"))
-        ( 29021,uint256("0x12d2738070d09723ba4fdace55c5f2b308ca934f2f98a397f52bf4a3a8527d17"))
-        ( 83300,uint256("0x0a41a95ca94430089621b123a64c5ad0d4be4ca4d5bac91257c1603285fde782"))
-        ( 136494,uint256("0xdd82d5d1152f1c9c8f10d97bb66c6bebcfda9cc83be141d1897b4d66a5355a01"))
-        ;
+        ( 500,uint256("0x0000000000001c48ab5d4274b1aadfc842a52a7daf1f1ebbd57ebc00ff138ddb"))
+        ( 5000,uint256("0x000000000000077f1e400c1d6aedb147c75c1046322fb5dd56d7f2d3cbe0e8d8"))
+        ( 50000,uint256("0x0f3c1d3583b3bf784df86e7bf1eca3d6a718ce6b3807b19a8978d7309386b3b5"))
+        ( 200000,uint256("0x4f1defa2c4bc900b870a8b03e2fc8f927e3d922f118dbdb1bd4992d324b1bad0"))
+        ( 460000,uint256("0x579d7a8ddc3b3675e7bb011ab02fe533f4b84b4fb97b2321f288d9863ea2bfed"))
+	;
 
     // TestNet has no checkpoints
     static MapCheckpoints mapCheckpointsTestnet =
@@ -69,7 +68,7 @@ namespace Checkpoints
         return NULL;
     }
 
-    // ppcoin: synchronized checkpoint (centrally broadcasted)
+    // zs: synchronized checkpoint (centrally broadcasted)
     uint256 hashSyncCheckpoint = 0;
     uint256 hashPendingCheckpoint = 0;
     CSyncCheckpoint checkpointMessage;
@@ -77,7 +76,7 @@ namespace Checkpoints
     uint256 hashInvalidCheckpoint = 0;
     CCriticalSection cs_hashSyncCheckpoint;
 
-    // ppcoin: get last synchronized checkpoint
+    // zs: get last synchronized checkpoint
     CBlockIndex* GetLastSyncCheckpoint()
     {
         LOCK(cs_hashSyncCheckpoint);
@@ -88,7 +87,7 @@ namespace Checkpoints
         return NULL;
     }
 
-    // ppcoin: only descendant of current sync-checkpoint is allowed
+    // zs: only descendant of current sync-checkpoint is allowed
     bool ValidateSyncCheckpoint(uint256 hashCheckpoint)
     {
         if (!mapBlockIndex.count(hashSyncCheckpoint))
@@ -241,7 +240,7 @@ namespace Checkpoints
         return false;
     }
 
-    // ppcoin: reset synchronized checkpoint to last hardened checkpoint
+    // zs: reset synchronized checkpoint to last hardened checkpoint
     bool ResetSyncCheckpoint()
     {
         LOCK(cs_hashSyncCheckpoint);
@@ -362,12 +361,12 @@ namespace Checkpoints
     }
 }
 
-// ppcoin: sync-checkpoint master key
-const std::string CSyncCheckpoint::strMasterPubKey = "04a5d9c5c4fc7b46c336a2e84c4af25609af4aa18f52c02e09d0d9a7fda8c8c6a6e113fe5858395ca72b35c4175a7f26e38da1caef2d408ac5eb82c6d07e572da7";
+// zs: sync-checkpoint master key
+const std::string CSyncCheckpoint::strMasterPubKey = "04ae605c2dabab1b6556952c81fc189941c27a1635b5127ba5bc43040c42bb0aa35477998c2edf1e940b7e928731a3d9ad1872243f4cda5d3c4bb7d787b81f07b4";
 
 std::string CSyncCheckpoint::strMasterPrivKey = "";
 
-// ppcoin: verify signature of sync-checkpoint message
+// zs: verify signature of sync-checkpoint message
 bool CSyncCheckpoint::CheckSignature()
 {
     CKey key;
@@ -382,7 +381,7 @@ bool CSyncCheckpoint::CheckSignature()
     return true;
 }
 
-// ppcoin: process synchronized checkpoint
+// zs: process synchronized checkpoint
 bool CSyncCheckpoint::ProcessSyncCheckpoint(CNode* pfrom)
 {
     if (!CheckSignature())

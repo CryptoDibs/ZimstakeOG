@@ -18,12 +18,11 @@ typedef std::map<int, unsigned int> MapModifierCheckpoints;
 static std::map<int, unsigned int> mapStakeModifierCheckpoints =
     boost::assign::map_list_of
         ( 0, 0xe00670bu )
-        ( 10600, 0xcf217a10u )
-        ( 12556, 0x2527cb42u )
-        ( 16996, 0x640a038cu )
-        ( 29021, 0x480a8c34u )
-        ( 83300, 0xd64b4916u )
-        ( 136494, 0x66443a99u )
+        ( 500, 0x11da3ec2xu )
+        ( 5000, 0xaf68f724xu )
+        ( 50000, 0xf802e93fxu )
+        ( 200000, 0xc7c9498fu )
+        ( 460000, 0x0a23583au )
     ;
 
 // Hard checkpoints of stake modifiers to ensure they are deterministic (testNet)
@@ -252,7 +251,7 @@ static bool GetKernelStakeModifier(uint256 hashBlockFrom, uint64_t& nStakeModifi
     return true;
 }
 
-// ppcoin kernel protocol
+// zs kernel protocol
 // coinstake must meet hash target according to the protocol:
 // kernel (input 0) must meet the formula
 //     hash(nStakeModifier + txPrev.block.nTime + txPrev.offset + txPrev.nTime + txPrev.vout.n + nTime) < bnTarget * nCoinDayWeight
