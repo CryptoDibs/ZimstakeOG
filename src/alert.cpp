@@ -19,10 +19,10 @@ using namespace std;
 map<uint256, CAlert> mapAlerts;
 CCriticalSection cs_mapAlerts;
 
-static const char* pszMainKey = "0466c018cccddfb47f3eb7e8497c49c0cb70bb1ca633f41491f98a2bd8dada6aca050415289c8eb3c1a2e9189ab9f0963acf4bccb06e1aeaef845a91c687b8b834";
+static const char* pszMainKey = "041d476ed6e033cb38c44cce91e513767af71bc1059ac38211389413f0d746e41d6e62c6de3a5c5d7cde90822f80fb6d51562abe17202935b95f46fd295a0632a3";
 
 // TestNet alerts pubKey
-static const char* pszTestKey = "048e8764972df48fb2200bf95789aa33f4a50b83adb67d2741252dcf80039f4104b44c301b42016d7c1aa631ba83f58e41c5a8de0048c0f390ff107af7b637287c";
+static const char* pszTestKey = "046ad5a7808479a5b1036965d980f1f8de0c0898e252b2808603c49e7f9fe45ee7ddccb1bf2ce30580367a6b63ba154be85edcc374f64a664f78b575d32f672fe0";
 
 void CUnsignedAlert::SetNull()
 {
@@ -109,13 +109,12 @@ bool CAlert::IsInEffect() const
 bool CAlert::Cancels(const CAlert& alert) const
 {
     if (!IsInEffect())
-        return false; // this was a no-op before 31403
+        return false; 
     return (alert.nID <= nCancel || setCancel.count(alert.nID));
 }
 
 bool CAlert::AppliesTo(int nVersion, std::string strSubVerIn) const
 {
-    // TODO: rework for client-version-embedded-in-strSubVer ?
     return (IsInEffect() &&
             nMinVer <= nVersion && nVersion <= nMaxVer &&
             (setSubVer.empty() || setSubVer.count(strSubVerIn)));
