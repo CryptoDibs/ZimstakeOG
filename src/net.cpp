@@ -1139,13 +1139,10 @@ void MapPort()
 // The first name is used as information source for addrman.
 // The second name should resolve to a list of seed addresses.
 static const char *strDNSSeed[][2] = {
-    {"seednode1.zimstake.us", "seed1.zimstake.us"},
-    {"seednode2.zimstake.us", "seed2.zimstake.us"},
-    {"seednode3.zimstake.us", "seed3.zimstake.us"},
-    {"seednode1.seednode.us", "seed1.seednode.us"},
-    {"seednode2.seednode.us", "seed2.seednode.us"},
-    {"seednode3.seednode.us", "seed3.seednode.us"},
-    {"seednode4.seednode.us", "seed4.seednode.us"}
+    {"seednode1.zimstake.io", "seed1.zimstake.io"},
+    {"seednode2.zimstake.io", "seed2.zimstake.io"},
+    {"seednode3.zimstake.io", "seed3.zimstake.io"},
+    {"seednode4.zimstake.io", "seed4.zimstake.io"},
 };
 
 void ThreadDNSAddressSeed(void* parg)
@@ -1216,7 +1213,7 @@ void ThreadDNSAddressSeed2(void* parg)
 
 unsigned int pnSeed[] =
 {
-    0xB443FF4A, 0xB543FF4A, 0xB643FF4A, 0x43EBAA6B, 0xA596AA6B, 0x49EDE2BC, 0x8FE7E2BC
+    0x5eed414d, 0x5eed5671, 0x5eed31e4, 0x266476be,
 };
 
 void DumpAddresses()
