@@ -64,9 +64,9 @@ void IRCServer::connected() {
 
 void IRCServer::joinChannel() {
     if (GetBoolArg("-testirc")) {
-        join("#zimstake-testing");
+        join("#Zimstaked");
     } else {
-        join("#ProjectZIM");
+        join("#ZimstakeOG");
     }
 }
 
@@ -321,7 +321,7 @@ QString IRCServer::parseCommand(QString command, bool ircserver) {
             
             return "PRIVMSG " + receiver + " :" + message;
         } else if (pref == "quit") {
-            return "QUIT (Zimstake Wallet IRC v1.0.1.5)";
+            return "QUIT (Zimstake Wallet IRC v1.1.0.0)";
         } else if (pref == "nick") {
             emit nicknameChanged(msg);
             return "NICK " + msg;
